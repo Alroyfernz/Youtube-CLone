@@ -1,0 +1,54 @@
+
+@import "../../base.scss";
+.video{
+    margin-bottom: 1 rem;
+    padding: 0.7rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &_top{
+        margin-bottom: 0.5rem;
+        position: relative;
+        
+        .lazy-load-image-background{
+            width: 100%;
+        }
+       
+        img{
+            width: 100%;
+        }
+        &_duration{
+            position: absolute;
+            bottom:0.3rem;
+            right: 0.3rem;
+            background-color: $border-color;
+        }
+    }
+    &_title{
+        margin-bottom: 0.1rem;
+        color: white;
+        
+        @include line-clam(1);
+    }
+    &_details{
+        display: flex;
+        align-items: center;
+        margin:  0.5rem 0;;
+    }
+    &_channel{
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+        img{
+            width:36px;
+            height:36px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        p{
+            margin-bottom: unset;
+        }
+    }
+}

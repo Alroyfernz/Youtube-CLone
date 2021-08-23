@@ -1,0 +1,65 @@
+@import "../../base";
+
+.login{
+    height: 100vh;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+  
+    &_container{
+        display: flex;
+        padding: 2rem;
+
+        flex-direction: column;
+        
+        align-items: center;
+    }
+
+    img{
+        width:330px;
+        height:300px;
+        object-fit: contain;
+     
+      
+    }
+    button{
+        width: 100%;
+        padding: 7px;
+        border-radius: 12px;
+        border-style: none;
+        margin-bottom: 15px;
+        display: flex;
+        z-index: 9;
+        justify-content: center;
+       
+      span{
+          margin-left: 10px;
+          font-size: 18px;
+font-weight: 400;
+      }  
+      
+    }
+}
+@media (max-width:$breakpoint-small) {
+
+    .login{
+        &_container{
+            img{
+height: 168px;
+width: 168px;
+            }
+            button{
+                padding: 4px;
+                width: 80%;
+                span{
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+            }
+            p{
+                width: 80%;
+            }
+        }
+    }
+    
+}

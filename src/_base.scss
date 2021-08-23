@@ -1,0 +1,29 @@
+
+$text-color: #b1bdb4;
+$black-primary: #16161b;
+$black-secondary: #121417;
+$border-color: #4c4c4c;
+
+$breakpoint-medium: 1224px;
+$breakpoint-small: 520px;
+
+* {margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+
+body
+{
+background-color:$black-primary !important;
+background-attachment:fixed;
+color:$text-color !important;
+letter-spacing:0.1px;
+}
+@mixin line-clam ($num){
+    overflow: hidden;
+    display: -webkit-box;
+        -webkit-line-clamp: $num;
+        -webkit-box-orient: vertical;
+}
+

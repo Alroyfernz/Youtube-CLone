@@ -104,7 +104,9 @@ const VideoHorizontal = ({ video, searchScreen }) => {
           </div>
         )}
 
-        {isVideo && <p className="mt-1">{description}</p>}
+        {isVideo && (
+          <p className="mt-1 videoHorizontal_descriptio">{description}</p>
+        )}
 
         <div className="videoHorizontal_channel d-flex align-items-center my-1">
           {isVideo && <LazyLoadImage src={channelI?.url} effect="blur" />}

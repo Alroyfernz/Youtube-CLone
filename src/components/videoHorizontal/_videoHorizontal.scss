@@ -33,7 +33,9 @@ margin-bottom: 2rem;
          width: 100%;
       }
    }
-
+ &_description{
+   @include line-clam(1)
+ }
 
    &_duration {
       position: absolute;

@@ -63,11 +63,9 @@ const WatchScreen = () => {
               {!loading ? (
                 videos
                   ?.filter((video) => video.snippet)
-                  .map((video) => {
-                    return (
-                      <VideoHorizontal video={video} key={video.id.videoId} />
-                    );
-                  })
+                  .map((video) => (
+                    <VideoHorizontal video={video} key={video.id.videoId} />
+                  ))
               ) : (
                 <SkeletonTheme color="#343a40" highlightColor="#3c4147">
                   <Skeleton width="100%" height="130px" count={15} />

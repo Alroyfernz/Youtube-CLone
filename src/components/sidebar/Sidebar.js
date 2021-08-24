@@ -8,18 +8,23 @@ import {
   MdThumbUp,
   MdHistory,
   MdHome,
-  MdSentimentDissatisfied,
 } from "react-icons/md";
 import { log_out } from "../../redux/actions/auth.action";
-import { LOG_OUT } from "../../redux/actionType";
+import { useHistory } from "react-router-dom";
+
 const Sidebar = ({ sidebar }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const handleClick = () => {
+    history.push("/main");
+  };
+
   const handleLO = () => {
     dispatch(log_out());
   };
   return (
     <nav className={sidebar ? "sidebar open" : "sidebar"}>
-      <li>
+      <li onClick={handleClick}>
         <MdHome />
         <span>Home</span>
       </li>

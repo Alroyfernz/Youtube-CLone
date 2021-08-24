@@ -7,7 +7,7 @@ import numeral from "numeral";
 import { useHistory } from "react-router-dom";
 import "./_videoHorizontal.scss";
 import { Col, Row } from "react-bootstrap";
-const VideoHorizontal = ({ video }) => {
+const VideoHorizontal = ({ video, searchScreen }) => {
   const history = useHistory();
 
   const {
@@ -24,8 +24,12 @@ const VideoHorizontal = ({ video }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelI, setCI] = useState(null);
+  const [, setCT] = useState(null);
+
   const seconds = moment.duration(duration).asSeconds();
   const durations = moment.utc(seconds * 1000).format("mm:ss");
+
+  const isVideo = id.kind === "youtube#video";
 
   useEffect(() => {
     const getVD = async () => {
@@ -45,38 +49,65 @@ const VideoHorizontal = ({ video }) => {
     getVD();
   }, [id]);
 
+  useEffect(() => {
+    const getCI = async () => {
+      const {
+        data: { items },
+      } = await request("/channels", {
+        params: {
+          part: "snippet",
+          id: channelId,
+        },
+      });
+
+      setCI(items[0].snippet.thumbnails.default);
+      setCT(items[0].snippet.title);
+    };
+
+    getCI();
+  }, [channelId, setCT]);
+
   const handleClick = () => {
-    history.push(`/watch/${id.videoId}`);
+    isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/main`);
   };
+  const thumbnail = !isVideo && "videoHorizontail_thumbnail-channel";
 
   return (
     <Row
       className="videoHorizontal m-1 py-2 align-items-center"
       onClick={handleClick}
     >
-      <Col xs={6} md={6} className="videoHorizontal_left">
+      <Col xs={6} md={searchScreen ? 4 : 6} className="videoHorizontal_left">
         <LazyLoadImage
           src={medium.url}
           effect="blur"
-          className="videoHorizontal_thumbnail-channel"
+          className={`videoHorizontal_thumbnail ${thumbnail}`}
           wrapperClassName="videoHorizontal_thumbnail-wrapper"
         />
-        <span className="videoHorizontal_duration">{durations}</span>
+
+        {isVideo && (
+          <span className="videoHorizontal_duration">{durations}</span>
+        )}
       </Col>
-      <Col xs={6} md={6} className="videoHorizontal_right p-0">
+      <Col
+        xs={6}
+        md={searchScreen ? 8 : 6}
+        className="videoHorizontal_right p-0"
+      >
         <p className="videoHorizontal_title mb-1">{title}</p>
-        <div className="videoHorizontal_details">
-          <AiFillEye />
-          {numeral({ views }).format("0.a")} Views •
-          {moment({ publishedAt }).fromNow()}
-        </div>
+
+        {isVideo && (
+          <div className="videoHorizontal_details">
+            <AiFillEye />
+            {numeral({ views }).format("0.a")} Views •
+            {moment({ publishedAt }).fromNow()}
+          </div>
+        )}
+
+        {isVideo && <p className="mt-1">{description}</p>}
 
         <div className="videoHorizontal_channel d-flex align-items-center my-1">
-          {/* <LazyLoadImage
-          src="https://c4.wallpaperflare.com/wallpaper/102/204/987/black-panther-black-background-minimalism-marvel-comics-wallpaper-preview.jpg"
-          effect="blur"
-          
-        /> */}
+          {isVideo && <LazyLoadImage src={channelI?.url} effect="blur" />}
           <p className="mb-0">{channelTitle}</p>
         </div>
       </Col>

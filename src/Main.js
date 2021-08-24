@@ -6,7 +6,6 @@ import { Container } from "react-bootstrap";
 
 import HomeScreen from "./components/homescreen/HomeScreen";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   const [sidebar, toggleSide] = useState(false);
 

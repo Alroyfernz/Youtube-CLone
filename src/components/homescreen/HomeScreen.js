@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Video from "../../components/video/Video";
 import {
@@ -7,7 +7,6 @@ import {
   getVideosByCategory,
 } from "../../redux/actions/videos.action";
 import Categories from "../catergoriesBar/Categories";
-import Sidebar from "../sidebar/Sidebar";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import SkeletonVideo from "../skeletons/SkeletonVideo";

@@ -16,9 +16,7 @@ import VideoMetaData from "../videoMetaData/VideoMetaData";
 import "./_watchScreen.scss";
 const WatchScreen = () => {
   const { id } = useParams();
-  const { video, loading: relatedVideosLoading } = useSelector(
-    (state) => state.selectedVideo
-  );
+  const { video } = useSelector((state) => state.selectedVideo);
   const dispatch = useDispatch();
   const { videos, loading } = useSelector((state) => state.relatedVideo);
 

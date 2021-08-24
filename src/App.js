@@ -1,18 +1,11 @@
 import Main from "./Main.js";
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-} from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Login from "./components/loginScreen/Login";
 import WatchScreen from "./components/watchscreen/WatchScreen.js";
 import SearchScreen from "./components/screenScreen/SearchScreen.js";
 const App = () => {
-  const { query } = useParams();
   const { accessToken, loading } = useSelector((state) => state.auth);
 
   const history = useHistory();

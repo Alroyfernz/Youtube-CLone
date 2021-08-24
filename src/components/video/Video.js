@@ -11,7 +11,7 @@ const Video = ({ video }) => {
     id,
     snippet: {
       channelId,
-      channelTitle,
+
       title,
       publishedAt,
       thumbnails: { medium },

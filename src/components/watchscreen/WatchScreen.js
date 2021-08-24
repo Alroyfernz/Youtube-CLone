@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getVideoById } from "../../redux/actions/videos.action";
+import {
+  getRelatedVideos,
+  getVideoById,
+} from "../../redux/actions/videos.action";
 import Comments from "../comments/Comments";
 import Header from "../header/Header";
-import HomeScreen from "../homescreen/HomeScreen";
 import Sidebar from "../sidebar/Sidebar";
 import VideoHorizontal from "../videoHorizontal/VideoHorizontal";
 import VideoMetaData from "../videoMetaData/VideoMetaData";
 import "./_watchScreen.scss";
 const WatchScreen = () => {
   const { id } = useParams();
-  const { video, loading } = useSelector((state) => state.selectedVideo);
+  const { video, loading: relatedVideosLoading } = useSelector(
+    (state) => state.selectedVideo
+  );
   const dispatch = useDispatch();
+  const { videos, loading } = useSelector((state) => state.relatedVideo);
 
   useEffect(() => {
     dispatch(getVideoById(id));
+
+    dispatch(getRelatedVideos(id));
   }, [dispatch, id]);
 
   const [sidebar, toggleSide] = useState(false);
@@ -47,13 +55,26 @@ const WatchScreen = () => {
                 <h6>Loading..</h6>
               )}
 
-              <Comments />
+              <Comments
+                totalComments={video?.statistics?.commentCount}
+                videoId={id}
+              />
             </Col>
 
             <Col lg={4}>
-              {[...Array(10)].map(() => {
-                return <VideoHorizontal />;
-              })}
+              {!loading ? (
+                videos
+                  ?.filter((video) => video.snippet)
+                  .map((video) => {
+                    return (
+                      <VideoHorizontal video={video} key={video.id.videoId} />
+                    );
+                  })
+              ) : (
+                <SkeletonTheme color="#343a40" highlightColor="#3c4147">
+                  <Skeleton width="100%" height="130px" count={15} />
+                </SkeletonTheme>
+              )}
             </Col>
           </Row>
         </Container>

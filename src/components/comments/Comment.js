@@ -2,19 +2,22 @@ import moment from "moment";
 import React from "react";
 import "./_comment.scss";
 
-const comment = () => {
+const comment = ({ comment }) => {
+  const { authorDisplayName, authorProfileImageUrl, publishedAt, textDisplay } =
+    comment;
+
   return (
     <div className="comment p-2 d-flex">
       <img
-        src="https://c4.wallpaperflare.com/wallpaper/102/204/987/black-panther-black-background-minimalism-marvel-comics-wallpaper-preview.jpg"
+        src={authorProfileImageUrl}
         alt="tt"
         className=" mr-3 pr-3 rounded-circle"
       />
       <div className="comment_body">
         <p className="comment_header mb-1">
-          Alroy Fernandes•{moment("2020-06-6").fromNow()}
+          {authorDisplayName}•{moment({ publishedAt }).fromNow()}
         </p>
-        <p className="mb-0">Nice video</p>
+        <p className="mb-0">{textDisplay}</p>
       </div>
     </div>
   );

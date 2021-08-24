@@ -24,8 +24,8 @@ margin-bottom: 2rem;
    &_thumbnail {
       width: 100%;
       &-channel {
-         width: 50%;
-         border-radius: 50%;
+         width: 100%;
+        
       }
 
       &-wrapper {
@@ -37,8 +37,8 @@ margin-bottom: 2rem;
    &_duration {
       position: absolute;
 
-      bottom: 0.6rem;
-      right: 1.2rem;
+      bottom: 0.8rem;
+      right: 0.9rem;
 
       font-size: 0.9rem;
       padding: 0.2rem;

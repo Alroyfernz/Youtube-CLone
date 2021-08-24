@@ -11,12 +11,12 @@ const Header = ({ handleClick }) => {
   const [input, setInput] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`search/${input}`);
+    history.push(`screen/${input}`);
   };
 
   return (
     <div className="border border-dark header">
-      <FaBars className="header_menu" sizee={26} onClick={handleClick} />
+      <FaBars className="header_menu" size={26} onClick={handleClick} />
       <img src={adr} alt="yt" className="header_logo" />
       <form onSubmit={handleSubmit}>
         <input

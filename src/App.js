@@ -6,11 +6,13 @@ import {
   Route,
   Switch,
   useHistory,
+  useParams,
 } from "react-router-dom";
 import Login from "./components/loginScreen/Login";
 import WatchScreen from "./components/watchscreen/WatchScreen.js";
 import SearchScreen from "./components/screenScreen/SearchScreen.js";
 const App = () => {
+  const { query } = useParams();
   const { accessToken, loading } = useSelector((state) => state.auth);
 
   const history = useHistory();
@@ -24,7 +26,7 @@ const App = () => {
       <Route exact path="/" component={Login} />
       <Route path="/main" component={Main} />
       <Route path="/watch/:id" component={WatchScreen} />
-      <Route path="/screen" component={SearchScreen} />
+      <Route path="/screen/:query" component={SearchScreen} />
     </Switch>
   );
 };

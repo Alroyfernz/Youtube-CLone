@@ -22,6 +22,7 @@ const Comments = ({ videoId, totalComments }) => {
     dispatch(getCommentsofVideoById(videoId));
   }, [videoId, dispatch]);
 
+  const value = useSelector((state) => state.auth?.user);
   const handleComment = (e) => {
     e.preventDefault();
     if (text.length === 0) return;
@@ -33,11 +34,7 @@ const Comments = ({ videoId, totalComments }) => {
     <div class="comments">
       <p>{totalComments} comments</p>
       <div className="comment_form d-flex w-100 my-2">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/102/204/987/black-panther-black-background-minimalism-marvel-comics-wallpaper-preview.jpg"
-          alt="tt"
-          className="rounded-circle mr-3"
-        />
+        <img src={value.photoURL} alt="tt" className="rounded-circle mr-3" />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
           <input
             type="text"

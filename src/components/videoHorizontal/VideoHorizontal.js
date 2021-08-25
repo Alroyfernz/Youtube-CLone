@@ -105,7 +105,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
         )}
 
         {isVideo && (
-          <p className="mt-1 videoHorizontal_descriptio">{description}</p>
+          <p className="mt-1 videoHorizontal_description">{description}</p>
         )}
 
         <div className="videoHorizontal_channel d-flex align-items-center my-1">

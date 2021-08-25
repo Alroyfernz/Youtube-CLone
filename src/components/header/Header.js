@@ -5,9 +5,10 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps } from "react-icons/md";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = ({ handleClick }) => {
   const history = useHistory();
-
+  const value = useSelector((state) => state.auth?.user);
   const [input, setInput] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +33,7 @@ const Header = ({ handleClick }) => {
       <div className="header_icon">
         <MdNotifications size={28} />
         <MdApps size={28} />
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/102/204/987/black-panther-black-background-minimalism-marvel-comics-wallpaper-preview.jpg"
-          alt="avatar"
-        />
+        <img src={value.photoURL} alt="avatar" />
       </div>
     </div>
   );
